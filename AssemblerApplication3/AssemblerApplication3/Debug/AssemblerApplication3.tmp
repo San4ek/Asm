@@ -1,0 +1,42 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega168"</DEVICE>
+ <WORKING_DIR>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\avrasm\inc\m168def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\Debug\AssemblerApplication3.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>AssemblerApplication3.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>AssemblerApplication3.map</FILE>
+  <FILE>AssemblerApplication3.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <first_arr><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>8</LINE></first_arr>
+  <second_arr><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>9</LINE></second_arr>
+  <third_arr><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>10</LINE></third_arr>
+  <start><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>56</LINE></start>
+  <fill_arrs><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>63</LINE></fill_arrs>
+  <fill_third_arr><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>70</LINE></fill_third_arr>
+  <clear_counter><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>125</LINE></clear_counter>
+  <loop><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>76</LINE></loop>
+  <compare_counter><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>131</LINE></compare_counter>
+  <end><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>83</LINE></end>
+  <inc_counter><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>137</LINE></inc_counter>
+  <load_addrs><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>110</LINE></load_addrs>
+  <process_arrs><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>117</LINE></process_arrs>
+  <load_values_from_arrs><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>88</LINE></load_values_from_arrs>
+  <save_value_to_arr><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>95</LINE></save_value_to_arr>
+  <sum_values><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm</FILE><LINE>102</LINE></sum_values>
+ </LABELS>
+</ASSEMBLER_INFO>
