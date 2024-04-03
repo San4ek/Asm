@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication5\AssemblerApplication5\main.asm Wed Apr 03 22:48:38 2024
+AVRASM ver. 2.2.8  C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication5\AssemblerApplication5\main.asm Wed Apr 03 22:58:04 2024
 
 
 EQU  SIGNATURE_000 0000001e
@@ -875,8 +875,7 @@ EQU  firstNum     00000064
 EQU  secondNum    000000af
 EQU  thirdNum     000000fa
 CSEG start        00000000
-CSEG compare_nums 00000003
-CSEG is_less@CPM@1274 00000007
-CSEG end@CPM@1274 00000008
-CSEG is_less@CPM@1291 0000000c
-CSEG end@CPM@1291 0000000d
+CSEG is_less@CPM@1268 00000005
+CSEG end@CPM@1268 00000006
+CSEG is_less@CPM@1285 0000000a
+CSEG end@CPM@1285 0000000b
