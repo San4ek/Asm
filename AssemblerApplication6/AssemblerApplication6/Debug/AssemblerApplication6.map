@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm Tue Apr 09 09:44:51 2024
+AVRASM ver. 2.2.8  C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication6\AssemblerApplication6\main.asm Wed Apr 10 01:59:52 2024
 
 
 EQU  SIGNATURE_000 0000001e
@@ -690,28 +690,16 @@ EQU  ACIaddr      0000002e
 EQU  TWIaddr      00000030
 EQU  SPMRaddr     00000032
 EQU  INT_VECTORS_SIZE 00000034
-DSEG first_arr    00000100
-DSEG second_arr   0000010a
-DSEG third_arr    00000114
 DEF  counter      r16
+SET  first        00000044
+CSEG first_arr    00000022
+SET  second       00000054
+CSEG second_arr   0000002a
+DSEG third_arr    00000100
 CSEG start        00000000
-CSEG fill_arrs    00000003
-CSEG fill_third_arr 00000022
-CSEG clear_counter 0000003f
-CSEG loop         00000025
-CSEG loop@FILLARR@1039 00000007
-CSEG compare_counter 00000041
-CSEG end          0000002b
-CSEG inc_counter  00000043
-CSEG load_max_value@FILLARR@1039 0000000d
-CSEG process_arr@FILLARR@1039 0000000f
-CSEG end@FILLARR@1039 00000012
-CSEG loop@FILLARR@1072 00000016
-CSEG load_max_value@FILLARR@1072 0000001c
-CSEG process_arr@FILLARR@1072 0000001e
-CSEG end@FILLARR@1072 00000021
-CSEG load_addrs   00000036
-CSEG process_arrs 0000003b
-CSEG load_values_from_arrs 0000002c
-CSEG save_value_to_arr 0000002f
-CSEG sum_values   00000032
+CSEG loop         00000003
+CSEG end          00000009
+CSEG process_values 0000001e
+CSEG init_values  0000000a
+CSEG sub_values   00000017
+CSEG save_value   0000001b

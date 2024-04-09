@@ -36,7 +36,6 @@ end:
 
 ;сама программа
 	.CSEG
-
 start:
 	LMN		firstNum;загружаем первое число в регистр minReg
 	CPM		secondNum;сравниваем второе число с minReg

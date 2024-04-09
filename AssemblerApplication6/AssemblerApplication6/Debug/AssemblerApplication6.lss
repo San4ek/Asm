@@ -1,7 +1,9 @@
 
-AVRASM ver. 2.2.8  C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\AssemblerApplication3\main.asm Tue Apr 09 09:44:51 2024
+AVRASM ver. 2.2.8  C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication6\AssemblerApplication6\main.asm Wed Apr 10 01:59:52 2024
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\avrasm\inc\m168def.inc'
+C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication6\AssemblerApplication6\main.asm(9): warning: Use of undefined or forward referenced symbol 'first_arr' in .equ/.set
+C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication6\AssemblerApplication6\main.asm(10): warning: Use of undefined or forward referenced symbol 'second_arr' in .equ/.set
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\avrasm\inc\m168def.inc'
                                  
                                  ;
@@ -980,210 +982,152 @@ AVRASM ver. 2.2.8  C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication3\Assembl
                                  
                                  ; ***** END OF FILE ******************************************************
                                  
-                                 ; AssemblerApplication3.asm
+                                 ; AssemblerApplication6.asm
                                  ;
-                                 ; Created: 31.03.2024 13:43:04
+                                 ; Created: 09.04.2024 21:52:37
                                  ; Author : iNQU1SITOR
                                  ;
-                                 					.DSEG
-000100                           first_arr:		.BYTE				10;выделяем 10 байт на первый массив
-00010a                           second_arr:	.BYTE				10;выделяем 10 байт на второй массив
-000114                           third_arr:		.BYTE				20;выделяем 20 байт на третий массив
+                                 	.DEF counter=R16
                                  
-                                 					.DEF					counter=R16;задаем имя регистру R16
+                                 	.SET first=first_arr*2
+                                 	.SET second=second_arr*2
                                  
-                                 ;макрос сохранения адреса массива в X/Y/Z
-                                 					.MACRO			LOAD_ADDR
-                                 					LDI					@0H, HIGH(@1)
-                                 					LDI					@0L, LOW(@1)
-                                 					.ENDM
-                                 ;-----------------------------------------------
+                                 	.DSEG
+000100                           third_arr: .BYTE 20
                                  
-                                 ;макрос заполнения массива "случайными" числами
-                                 					.MACRO			FILLARR
-                                 					RCALL				clear_counter ;количество заполненных элементов массива
-                                 					RCALL				load_max_value
+                                 	.MACRO GA
                                  
-                                 					LOAD_ADDR	X,@0
+                                 	LDI R19,0
                                  
-                                 loop:
-                                 					RCALL				compare_counter
-                                 					BREQ				end
-                                 					RCALL				process_arr
-                                 					RCALL				inc_counter
-                                 					JMP					loop
+                                 	ADD R30,counter
+                                 	ADC R31,R19
                                  
-                                 ;сохраняем максимальное возможное значение элемента массива в R17
-                                 load_max_value:
-                                 					LDI					R17,0xFF ;максимальное значение элемента массива
-                                 					RET
-                                 ;----------------------------------------------
+                                 	.ENDM
                                  
-                                 ;непосредственно обрабатываем массив
-                                 process_arr:
-                                 					ST					X+,R17
-                                 					SUBI				R17,15
-                                 					RET
-                                 ;---------------------------------------------
+                                 	.MACRO LDA
                                  
-                                 end:
-                                 					.ENDM
-                                 ;-----------------------------------------------
+                                 	LDI @0H,HIGH(@1)
+                                 	LDI @0l,LOW(@1)
                                  
-                                 					.LISTMAC;включаем генерацию листинга для макросов
+                                 	.ENDM
                                  
-                                 ;сама программа
-                                 					.CSEG
+                                 	.MACRO LPZ
+                                 
+                                 	LDA Z,@1
+                                 	GA
+                                 	LPM @0,Z
+                                 
+                                 	.ENDM
+                                 
+                                 	.MACRO STA
+                                 
+                                 	ST @0+,@1
+                                 	ST @0+,@2
+                                 
+                                 	.ENDM
+                                 
+                                 	.LISTMAC
+                                 
+                                 	.CSEG
                                  start:
-000000 d002                      					RCALL				fill_arrs
-000001 d020                      					RCALL				fill_third_arr
-000002 9508                      					RET
-                                 ;-----------------------------------------
+                                +
+                                +
+000000 e0d1                     +LDI YH , HIGH ( third_arr )
+000001 e0c0                     +LDI Yl , LOW ( third_arr )
+                                +
+                                 	LDA Y,third_arr
                                  
-                                 ;заполняем массивы данными
-                                 fill_arrs:
-                                +
-000003 d03b                     +RCALL clear_counter
-000004 d008                     +RCALL load_max_value
-                                +
-                                +
-000005 e0b1                     +LDI XH , HIGH ( first_arr )
-000006 e0a0                     +LDI XL , LOW ( first_arr )
-                                +LOAD_ADDR X , first_arr
-                                +
-                                +loop :
-000007 d039                     +RCALL compare_counter
-000008 f049                     +BREQ end
-000009 d005                     +RCALL process_arr
-00000a d038                     +RCALL inc_counter
-00000b 940c 0007                +JMP loop
-                                +
-                                +
-                                +load_max_value :
-00000d ef1f                     +LDI R17 , 0xFF
-00000e 9508                     +RET
-                                +
-                                +
-                                +
-                                +process_arr :
-00000f 931d                     +ST X + , R17
-000010 501f                     +SUBI R17 , 15
-000011 9508                     +RET
-                                +
-                                +
-                                +end :
-                                 					FILLARR			first_arr
-                                +
-000012 d02c                     +RCALL clear_counter
-000013 d008                     +RCALL load_max_value
-                                +
-                                +
-000014 e0b1                     +LDI XH , HIGH ( second_arr )
-000015 e0aa                     +LDI XL , LOW ( second_arr )
-                                +LOAD_ADDR X , second_arr
-                                +
-                                +loop :
-000016 d02a                     +RCALL compare_counter
-000017 f049                     +BREQ end
-000018 d005                     +RCALL process_arr
-000019 d029                     +RCALL inc_counter
-00001a 940c 0016                +JMP loop
-                                +
-                                +
-                                +load_max_value :
-00001c ef1f                     +LDI R17 , 0xFF
-00001d 9508                     +RET
-                                +
-                                +
-                                +
-                                +process_arr :
-00001e 931d                     +ST X + , R17
-00001f 501f                     +SUBI R17 , 15
-000020 9508                     +RET
-                                +
-                                +
-                                +end :
-                                 					FILLARR			second_arr
-000021 9508                      					RET
-                                 ;------------------------------------------
-                                 
-                                 ;заполняем третий массив
-                                 fill_third_arr:
-000022 d01c                      					RCALL clear_counter
-000023 2711                      					CLR					R17 ;всегда 0
-                                 
-000024 d011                      					RCALL load_addrs
+000002 2700                      	CLR counter
                                  
                                  loop:
-000025 d01b                      					RCALL				compare_counter
-000026 f021                      					BREQ				end
-000027 d013                      					RCALL				process_arrs
-000028 d01a                      					RCALL				inc_counter
-000029 940c 0025                 					JMP					loop
+000003 300f                      	CPI counter,15
+000004 f021                      	BREQ end
+000005 d018                      	RCALL process_values
+000006 9503                      	INC counter
+000007 940c 0003                 	JMP loop
                                  
                                  end:
-00002b 9508                      					RET
-                                 ;----------------------------------------------
+000009 9508                      	RET
                                  
-                                 ;загружаем значения из массивов по аддресу Y и Z в R18 и R19 соответственно
-                                 load_values_from_arrs:
-00002c 9129                      					LD					R18,Y+
-00002d 9131                      					LD					R19,Z+
-00002e 9508                      					RET
-                                 ;-------------------------------------------
-                                 
-                                 ;сохраняет R19:R18 по адресу X
-                                 save_value_to_arr:
-00002f 933d                      					ST					X+,R19
-000030 932d                      					ST					X+,R18
-000031 9508                      					RET
-                                 ;---------------------------------------------
-                                 
-                                 ;суммируем R18 и R19 с учетом переполнения, на выходе R19:R18
-                                 sum_values:
-000032 0f23                      					ADD				R18,R19
-000033 2733                      					CLR					R19
-000034 1f31                      					ADC					R19,R17
-000035 9508                      					RET
-                                 ;--------------------------------------------------
-                                 
-                                 ;загружаем адреса массивов в Y и Z
-                                 load_addrs:
+                                 init_values:
                                 +
-000036 e0d1                     +LDI YH , HIGH ( first_arr )
-000037 e0c0                     +LDI YL , LOW ( first_arr )
-                                 					LOAD_ADDR Y,first_arr
                                 +
-000038 e0f1                     +LDI ZH , HIGH ( second_arr )
-000039 e0ea                     +LDI ZL , LOW ( second_arr )
-                                 					LOAD_ADDR Z,second_arr
-00003a 9508                      					RET
-                                 ;--------------------------------------------------
+                                +
+                                +
+00000a e0f0                     +LDI ZH , HIGH ( first )
+00000b e4e4                     +LDI Zl , LOW ( first )
+                                +
+                                +LDA Z , first
+                                +
+                                +
+00000c e030                     +LDI R19 , 0
+                                +
+00000d 0fe0                     +ADD R30 , counter
+00000e 1ff3                     +ADC R31 , R19
+                                +
+                                +GA
+00000f 9114                     +LPM R17 , Z
+                                +
+                                 	LPZ R17,first
+                                +
+                                +
+                                +
+                                +
+000010 e0f0                     +LDI ZH , HIGH ( second )
+000011 e5e4                     +LDI Zl , LOW ( second )
+                                +
+                                +LDA Z , second
+                                +
+                                +
+000012 e030                     +LDI R19 , 0
+                                +
+000013 0fe0                     +ADD R30 , counter
+000014 1ff3                     +ADC R31 , R19
+                                +
+                                +GA
+000015 9124                     +LPM R18 , Z
+                                +
+                                 	LPZ R18,second
+000016 9508                      	RET
                                  
-                                 ;непосредственно обрабатываем массивы
-                                 process_arrs:
-00003b dff0                      					RCALL				load_values_from_arrs
-00003c dff5                      					RCALL				sum_values
-00003d dff1                      					RCALL				save_value_to_arr
-00003e 9508                      					RET
-                                 ;-------------------------------------------------
+                                 sub_values:
+000017 1b12                      	SUB R17,R18
+000018 2722                      	CLR R18
+000019 4020                      	SBCI R18,0
+00001a 9508                      	RET
                                  
-                                 ;обнуляем счетчик заполненных элементов
-                                 clear_counter:
-00003f 2700                      					CLR					counter
-000040 9508                      					RET
-                                 ;---------------------------------------------------
+                                 save_value:
+                                +
+                                +
+00001b 9329                     +ST Y + , R18
+00001c 9319                     +ST Y + , R17
+                                +
+                                 	STA Y,R18,R17
+00001d 9508                      	RET
                                  
-                                 ;сравниваем счетчик с 10
-                                 compare_counter:
-000041 300a                      					CPI					counter,10
-000042 9508                      					RET
-                                 ;--------------------------------------------------
+                                 process_values:
+00001e dfeb                      	RCALL init_values
+00001f dff7                      	RCALL sub_values
+000020 dffa                      	RCALL save_value
+000021 9508                      	RET
                                  
-                                 ;увеличиваем счетчик элементов массива на 1
-                                 inc_counter:
-000043 9503                      					INC counter
-000044 9508                      					RET
+000022 0f00
+000023 2d1e
+000024 4b3c
+000025 695a
+000026 8778
+000027 a596
+000028 c3b4
+C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication6\AssemblerApplication6\main.asm(85): warning: .cseg .db misalignment - padding zero byte
+000029 00d2                      first_arr: .DB 0,15,30,45,60,75,90,105,120,135,150,165,180,195,210
+00002a c3d2
+00002b a5b4
+00002c 8796
+00002d 6978
+00002e 4b5a
+00002f 2d3c
+000030 0f1e
+C:\Users\iNQU1SITOR\Desktop\Asm\AssemblerApplication6\AssemblerApplication6\main.asm(86): warning: .cseg .db misalignment - padding zero byte
 
 
 RESOURCE USE INFORMATION
@@ -1201,40 +1145,40 @@ counted separately from r26..r31 here.
 .dseg memory usage only counts static data declared with .byte
 
 "ATmega168" register use summary:
-x  :   4 y  :   1 z  :   1 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
+x  :   0 y  :   2 z  :   2 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   3 r17:   8 r18:   3 r19:   5 r20:   0 
-r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   2 r27:   2 r28:   1 
-r29:   1 r30:   1 r31:   1 
-Registers used: 13 out of 35 (37.1%)
+r13:   0 r14:   0 r15:   0 r16:   5 r17:   3 r18:   5 r19:   4 r20:   0 
+r21:   0 r22:   0 r23:   0 r24:   0 r25:   0 r26:   0 r27:   0 r28:   1 
+r29:   1 r30:   4 r31:   4 
+Registers used: 10 out of 35 (28.6%)
 
 "ATmega168" instruction use summary:
-.lds  :   0 .sts  :   0 adc   :   1 add   :   1 adiw  :   0 and   :   0 
+.lds  :   0 .sts  :   0 adc   :   2 add   :   2 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   0 brcs  :   0 break :   0 breq  :   3 brge  :   0 brhc  :   0 
+brcc  :   0 brcs  :   0 break :   0 breq  :   1 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
-clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   3 cls   :   0 
+clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   2 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
 cpi   :   1 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   1 jmp   :   3 
-ld    :   2 ldd   :   0 ldi   :  10 lds   :   0 lpm   :   0 lsl   :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   1 jmp   :   1 
+ld    :   0 ldd   :   0 ldi   :   8 lds   :   0 lpm   :   4 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :   0 pop   :   0 
-push  :   0 rcall :  20 ret   :  15 reti  :   0 rjmp  :   0 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   0 
+push  :   0 rcall :   4 ret   :   5 reti  :   0 rjmp  :   0 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   1 sbi   :   0 sbic  :   0 sbis  :   0 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   4 std   :   0 sts   :   0 
-sub   :   0 subi  :   2 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 13 out of 113 (11.5%)
+sez   :   0 sleep :   0 spm   :   0 st    :   2 std   :   0 sts   :   0 
+sub   :   1 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
+Instructions used: 14 out of 113 (12.4%)
 
 "ATmega168" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00008a    138      0    138   16384   0.8%
-[.dseg] 0x000100 0x000128      0     40     40    1024   3.9%
+[.cseg] 0x000000 0x000064     68     32    100   16384   0.6%
+[.dseg] 0x000100 0x000114      0     20     20    1024   2.0%
 [.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 
-Assembly complete, 0 errors, 0 warnings
+Assembly complete, 0 errors, 4 warnings
