@@ -1,0 +1,36 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega168"</DEVICE>
+ <WORKING_DIR>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\Atmel\ATmega_DFP\2.1.506\avrasm\inc\m168def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\Debug\1.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>1.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>1.map</FILE>
+  <FILE>1.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <x_val><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\main.asm</FILE><LINE>77</LINE></x_val>
+  <y_val><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\main.asm</FILE><LINE>12</LINE></y_val>
+  <start><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\main.asm</FILE><LINE>38</LINE></start>
+  <compare><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\main.asm</FILE><LINE>51</LINE></compare>
+  <save><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\main.asm</FILE><LINE>47</LINE></save>
+  <more><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\main.asm</FILE><LINE>57</LINE></more>
+  <return><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\main.asm</FILE><LINE>53</LINE></return>
+  <second><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\main.asm</FILE><LINE>68</LINE></second>
+  <first><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\main.asm</FILE><LINE>61</LINE></first>
+  <end><FILE>C:\Users\iNQU1SITOR\Desktop\Asm\1\1\main.asm</FILE><LINE>74</LINE></end>
+ </LABELS>
+</ASSEMBLER_INFO>
